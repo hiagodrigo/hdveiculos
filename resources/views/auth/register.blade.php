@@ -8,7 +8,7 @@
     <form action="{{ route('register') }}" method="post">
         @csrf
 		<h2>Crie sua conta</h2>
-		<p class="lead">It's free and hardly takes more than 30 seconds.</p>
+		<p class="lead">É gratuito e não leva mais de 30 segundos.</p>
         <div class="form-group">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-user"></i></span>

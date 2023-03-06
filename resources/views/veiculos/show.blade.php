@@ -7,8 +7,33 @@
     <div class="col-md-10 offset-mdf-1">
         <div class="row">
             <div id="image-container" class="col-md-6">
-                <img src="/img/veiculos/{{ $veiculo->foto }}" class="img-fluid" alt="{{ $veiculo->marca }}">
-            </div>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        @foreach (json_decode($veiculo->fotos) as $index => $foto)
+                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" @if($index == 0) class="active" @endif></li>
+                        @endforeach
+                    </ol>
+                    <div class="carousel-inner">
+                        @foreach (json_decode($veiculo->fotos) as $index => $foto)
+                        <div class="carousel-item @if($index == 0) active @endif">
+                            @if (filter_var($foto, FILTER_VALIDATE_URL))
+                            <img src="{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                            @else
+                            <img src="/img/veiculos/{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                            @endif
+                        </div>
+                        @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>            
             <div id="info-container" class="col-md-6">
                 <h1>{{ $veiculo->marca . '/' . $veiculo->modelo }}</h1>
                 <p class="event-city">

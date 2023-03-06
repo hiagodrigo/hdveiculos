@@ -12,7 +12,7 @@ class VeiculoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $search = request('search');
 
@@ -26,16 +26,28 @@ class VeiculoController extends Controller
                 ->orWhere('cor', 'like', '%' . $search . '%')
                 ->orWhere('potencia', 'like', '%' . $search . '%')
                 ->orWhere('ano', 'like', '%' . $search . '%')
-                ->paginate(4);
+                ->sortBy('created_at', 'desc')->get();
         } else {
-            $veiculos = Veiculo::paginate(4);
+            $veiculos = Veiculo::all();
         }
 
         if ($user = auth()->user()) {
             $veiculosInteresse = $user->veiculosInteresse;
         }
 
-        return view('veiculos.index', ['veiculos' => $veiculos, 'search' => $search, 'veiculosInteresse' => $veiculosInteresse]);
+        if ($request->ajax()) {
+            $veiculos = Veiculo::orderBy('created_at', 'desc')->paginate(4);
+        
+            $response = [
+                'veiculos' => $veiculos->items(),
+                'next_page' => $veiculos->nextPageUrl()
+            ];
+        
+            return response()->json($response);
+        }
+        
+
+        return view('veiculos.index', compact('veiculos'), compact('search'), compact('veiculosInteresse'));
     }
 
 
@@ -74,6 +86,8 @@ class VeiculoController extends Controller
 
                 $fotos = $request->file('fotos');
 
+                $nomesFotos = [];
+
                 foreach ($fotos as $foto) {
                     if ($foto->isValid()) {
                         $extensao = $foto->extension();
@@ -81,10 +95,12 @@ class VeiculoController extends Controller
 
                         $foto->move(public_path('img/veiculos'), $nomeFoto);
 
-                        // Salva a foto na base de dados
-                        $veiculo->fotos()->create(['url' => $nomeFoto]);
+                        $nomesFotos[] = $nomeFoto;
                     }
                 }
+
+                // Salva a foto na base de dados
+                $veiculo->fotos = json_encode($nomesFotos);
             }
 
             $user = auth()->user();

@@ -19,7 +19,7 @@ class Veiculo extends Model
         'cor',
         'potencia',
         'ano',
-        'foto',
+        'fotos',
         'opcionais'
     ];
 
@@ -35,6 +35,7 @@ class Veiculo extends Model
 
 
     protected $casts = [
-        'opcionais' => 'array'
+        'opcionais' => 'array',
+        'fotos' => 'array'
     ];
 }

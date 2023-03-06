@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
             ->create([
                 'user_id' => User::inRandomOrder()->first()->id
             ]);
+        
     }
 }

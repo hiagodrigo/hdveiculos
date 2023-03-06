@@ -32,8 +32,8 @@ class VeiculoFactory extends Factory
             'cor' => $faker->colorName(),
             'potencia' => $faker->randomFloat(2, 50, 500),
             'ano' => $faker->numberBetween(1900, date('Y')),
-            'opcionais' => $faker->randomElements(['ar_condicionado', 'direcao_hidraulica', 'vidros_eletricos'], $faker->numberBetween(0, 3)),
-            'fotos' => json_encode([$faker->image(public_path('img/veiculos'), 640, 480, null, false)]),
+            'opcionais' => $faker->randomElements(['Direção Hidráulica', 'Câmbio Automático', 'Teto Solar', 'Ar Condicionado', 'Roda de Liga Leve'], $faker->numberBetween(0, 3)),
+            'fotos' => json_encode([$faker->imageUrl($width = 640, $height = 480, 'transport'), $faker->imageUrl($width = 640, $height = 480, 'car')]),
             'user_id' => User::all()->random()->id
         ];
     }

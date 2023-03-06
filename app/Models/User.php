@@ -66,4 +66,6 @@ class User extends Authenticatable
     public function veiculosInteresse(){
         return $this->belongsToMany(Veiculo::class, 'veiculo_user');
     }
+
+    
 }
