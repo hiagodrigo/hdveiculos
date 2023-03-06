@@ -84,8 +84,14 @@
             <div class="form-group" id="create">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-file-image-o"></i></span>
-                    <p>Foto do Veículo</p>
-                    <img src="/img/veiculos/{{ $veiculo->foto }}" alt="{{ $veiculo->modelo }}" height="100">
+                    <p>Foto(s) do Veículo</p>
+                    @foreach (json_decode($veiculo->fotos) as $foto)
+                        @if (filter_var($foto, FILTER_VALIDATE_URL))
+                            <img src="{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                        @else
+                            <img src="/img/veiculos/{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                        @endif
+                    @endforeach
                     <input type="file" name="fotos[]" id="fotos" multiple>
                 </div>
             </div>

@@ -106,7 +106,14 @@ this.closest('form').submit();"><i
 		@endif
 
 		@if(Request::is('/'))
-        	@include('veiculos.ajax')
+			@if($veiculos->isEmpty())
+				<div class="signup-form">
+					<h2>Ainda não temos nenhum veículo cadastrado, que tal <a href="/veiculos/create"> cadastrar agora?</a></h2>
+				</div>				
+			@else{
+        		@include('veiculos.ajax')
+			}
+			@endif
     	@endif
 
 		@yield('content')

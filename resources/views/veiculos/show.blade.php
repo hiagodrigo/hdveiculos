@@ -15,13 +15,13 @@
                     </ol>
                     <div class="carousel-inner">
                         @foreach (json_decode($veiculo->fotos) as $index => $foto)
-                        <div class="carousel-item @if($index == 0) active @endif">
-                            @if (filter_var($foto, FILTER_VALIDATE_URL))
-                            <img src="{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
-                            @else
-                            <img src="/img/veiculos/{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
-                            @endif
-                        </div>
+                            <div class="carousel-item @if($index == 0) active @endif">
+                                @if (filter_var($foto, FILTER_VALIDATE_URL))
+                                    <img src="{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                                @else
+                                    <img src="/img/veiculos/{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
+                                @endif
+                            </div>
                         @endforeach
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

@@ -190,6 +190,15 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+.thumb-content p {
+	font-family: 'Varela Round', sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 100%;
+}
   
 
 .carousel .carousel-item .img-box {

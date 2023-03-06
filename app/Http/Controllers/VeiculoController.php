@@ -47,7 +47,7 @@ class VeiculoController extends Controller
         }
         
 
-        return view('veiculos.index', compact('veiculos'), compact('search'), compact('veiculosInteresse'));
+        return view('veiculos.index', compact('veiculos', 'search', 'veiculosInteresse'));
     }
 
 
@@ -68,7 +68,6 @@ class VeiculoController extends Controller
     public function store(Request $request)
     {
         if ($request != null) {
-
             $veiculo = new Veiculo;
 
             $veiculo->especie = $request->especie;
@@ -83,9 +82,7 @@ class VeiculoController extends Controller
 
             //Image Upload
             if ($request->hasFile('fotos')) {
-
                 $fotos = $request->file('fotos');
-
                 $nomesFotos = [];
 
                 foreach ($fotos as $foto) {
@@ -99,17 +96,23 @@ class VeiculoController extends Controller
                     }
                 }
 
-                // Salva a foto na base de dados
+                // Salva a foto na base de dados como um array codificado em JSON
                 $veiculo->fotos = json_encode($nomesFotos);
             }
 
             $user = auth()->user();
             $veiculo->user_id = $user->id;
 
-            if ($veiculo->save())
-                return redirect('/')->with('msg', 'Veículo cadastrado com sucesso!');
+            if ($veiculo->save()) {
+                // Recupera o veículo recém-cadastrado, incluindo as fotos decodificadas
+                $veiculo = Veiculo::with('user')->findOrFail($veiculo->id);
+                $veiculo->fotos = json_decode($veiculo->fotos);
+
+                return redirect('/')->with('msg', 'Veículo cadastrado com sucesso!')->with('veiculo', $veiculo);
+            }
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -133,7 +136,7 @@ class VeiculoController extends Controller
 
         $donoAnuncio = User::where('id', $veiculo->user_id)->first()->toArray();
 
-        return view('veiculos.show', ['veiculo' => $veiculo, 'donoAnuncio' => $donoAnuncio, 'hasUserJoined' => $hasUserJoined]);
+        return view('veiculos.show', compact('veiculo', 'donoAnuncio', 'hasUserJoined'));
     }
 
 
@@ -150,7 +153,7 @@ class VeiculoController extends Controller
             return redirect('/dashboard');
         }
 
-        return view('veiculos.edit', ['veiculo' => $veiculo]);
+        return view('veiculos.edit', compact('veiculo'));
     }
 
     /**
@@ -165,6 +168,8 @@ class VeiculoController extends Controller
 
             $fotos = $request->file('fotos');
 
+            $nomesFotos = [];
+
             foreach ($fotos as $foto) {
                 if ($foto->isValid()) {
                     $extensao = $foto->extension();
@@ -172,16 +177,23 @@ class VeiculoController extends Controller
 
                     $foto->move(public_path('img/veiculos'), $nomeFoto);
 
-                    // Salva a foto na base de dados
-                    $veiculo->fotos()->create(['url' => $nomeFoto]);
+                    $nomesFotos[] = $nomeFoto;
                 }
             }
+
+            // Salva a foto na base de dados
+            $data['fotos'] = json_encode($nomesFotos);
+        }
+
+        if (isset($data['fotos']) && !is_string($data['fotos'])) {
+            $data['fotos'] = json_encode($data['fotos']);
         }
 
         Veiculo::findOrFail($veiculo->id)->update($data);
 
         return redirect('/dashboard')->with('msg', 'Veículo editado com sucesso!');
     }
+
 
 
     /**
@@ -206,7 +218,7 @@ class VeiculoController extends Controller
 
         return view(
             '/dashboard',
-            ['veiculos' => $veiculos, 'veiculosInteresse' => $veiculosInteresse]
+            compact('veiculos', 'veiculosInteresse')
         );
     }
 
