@@ -7,30 +7,37 @@
     <div class="col-md-10 offset-mdf-1">
         <div class="row">
             <div id="image-container" class="col-md-6">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        @foreach (json_decode($veiculo->fotos) as $index => $foto)
-                        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" @if($index == 0) class="active" @endif></li>
-                        @endforeach
-                    </ol>
-                    <div class="carousel-inner">
-                        @foreach (json_decode($veiculo->fotos) as $index => $foto)
-                            <div class="carousel-item @if($index == 0) active @endif">
-                                @if (filter_var($foto, FILTER_VALIDATE_URL))
-                                    <img src="{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
-                                @else
-                                    <img src="/img/veiculos/{{ $foto }}" class="d-block w-100" alt="{{ $veiculo->marca }}">
-                                @endif
-                            </div>
-                        @endforeach
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @if(!empty(json_decode($veiculo->fotos)))
+                            @foreach (json_decode($veiculo->fotos) as $index => $foto)
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" @if($index == 0) class="active" @endif aria-current="true"></button>
+                            @endforeach
+                        @endif
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                    <div class="carousel-inner">
+                        @if(!empty(json_decode($veiculo->fotos)))
+                            @foreach (json_decode($veiculo->fotos) as $index => $foto)
+                                <div class="carousel-item @if($index == 0) active @endif">
+                                    @if (filter_var($foto, FILTER_VALIDATE_URL))
+                                        <img src="{{ $foto }}" class="d-block w-100 show" alt="{{ $veiculo->marca }}">
+                                    @else
+                                        <img src="/img/veiculos/{{ $foto }}" class="d-block w-100 show" alt="{{ $veiculo->marca }}">
+                                    @endif
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="carousel-item active">   
+                                <img src="/img/imagem_padrao.png" class="img-fluid" alt="{{ $veiculo->marca }}">
+                            </div>
+                        @endif
+                    </div>
+                    <!-- Carousel controls -->
+                    <a class="carousel-control-prev" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <i class="fa fa-angle-left"></i>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                    <a class="carousel-control-next" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <i class="fa fa-angle-right"></i>
                     </a>
                 </div>
             </div>            

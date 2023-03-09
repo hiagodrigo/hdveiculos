@@ -15,11 +15,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     {{-- Bootstrap --}}
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 	
     {{-- Scripts personalizados --}}
 	<link href="/css/styles.css" rel="stylesheet" type="text/css">
@@ -38,11 +36,11 @@
 				<a class="nav-item nav-link active" href="/">Home</a>
 				<a class="nav-item nav-link" href="/veiculos/create">Crie seu anúncio</a>
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Veículos</a>
+					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Veículos</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/?search=Automóveis">Automóveis</a>
-						<a class="dropdown-item" href="/?search=Motocicletas">Motocicletas</a>
-						<a class="dropdown-item" href="/?search=Utilitários">Utilitários</a>
+						<a class="dropdown-item" href="/?search=passageiro">Passageiro</a>
+						<a class="dropdown-item" href="/?search=carga">Carga</a>
+						<a class="dropdown-item" href="/?search=cambio automatico">Câmbio Automático</a>
 						<a class="dropdown-item" href="/?search=Camionetas">Camionetas</a>
 					</div>
 				</div>
@@ -58,20 +56,15 @@
 			@auth
 				<div class="navbar-nav ml-auto">
 					<div class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle user-action" data-toggle="dropdown" href="#" style="margin-right: 110px">
+						<a class="nav-link dropdown-toggle user-action" data-bs-toggle="dropdown" href="#">
 							{{ auth()->user()->name }} <b class="caret"></b></a>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/dashboard"><i class="fa fa-user-o"></i> Meus
-								anúncios</a></a>
-							<a class="dropdown-item" href="{{ route('profile.show') }}"><i class="fa fa-sliders"></i>
-								Meus
-								dados</a></a>
+							<a class="dropdown-item" href="/dashboard"><i class="fa fa-user-o"></i> Meus anúncios</a></a>
+							<a class="dropdown-item" href="{{ route('profile.show') }}"><i class="fa fa-sliders"></i>Meus dados</a></a>
 							<div class="dropdown-divider"></div>
 							<form action="/logout" method="POST">
 								@csrf
-								<a class="dropdown-item" href="/logout" onclick="event.preventDefault();
-this.closest('form').submit();"><i
-										class="material-icons">&#xE8AC;</i> Logout</a></a>
+								<a class="dropdown-item" href="/logout" onclick="event.preventDefault(); this.closest('form').submit();"><i class="material-icons">&#xE8AC;</i> Logout</a></a>
 							</form>
 						</div>
 					</div>
@@ -110,9 +103,9 @@ this.closest('form').submit();"><i
 				<div class="signup-form">
 					<h2>Ainda não temos nenhum veículo cadastrado, que tal <a href="/veiculos/create"> cadastrar agora?</a></h2>
 				</div>				
-			@else{
+			@else
         		@include('veiculos.ajax')
-			}
+			
 			@endif
     	@endif
 
@@ -133,8 +126,13 @@ this.closest('form').submit();"><i
 	</footer>
 
     {{-- Ion icons --}}
-	<script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+	{{-- Bootstrap Script --}}
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+	
 </body>
 
 </html>

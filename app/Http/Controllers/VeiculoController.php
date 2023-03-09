@@ -26,7 +26,7 @@ class VeiculoController extends Controller
                 ->orWhere('cor', 'like', '%' . $search . '%')
                 ->orWhere('potencia', 'like', '%' . $search . '%')
                 ->orWhere('ano', 'like', '%' . $search . '%')
-                ->sortBy('created_at', 'desc')->get();
+                ->get();
         } else {
             $veiculos = Veiculo::all();
         }
@@ -98,6 +98,15 @@ class VeiculoController extends Controller
 
                 // Salva a foto na base de dados como um array codificado em JSON
                 $veiculo->fotos = json_encode($nomesFotos);
+
+            //     // Verifica se pelo menos uma imagem foi fornecida
+            //     if (empty($nomesFotos)) {
+            //         return redirect()->back()->withInput()->withErrors(['fotos' => 'Pelo menos uma imagem é necessária.']);
+            //     }
+            // } else {
+            //     // Nenhuma imagem foi fornecida
+            //     return redirect()->back()->withInput()->withErrors(['fotos' => 'Pelo menos uma imagem é necessária.']);
+            // }
             }
 
             $user = auth()->user();
@@ -112,6 +121,7 @@ class VeiculoController extends Controller
             }
         }
     }
+
 
 
     /**

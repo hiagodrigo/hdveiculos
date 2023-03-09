@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('potencia');
             $table->string('ano');
             $table->string('foto');
-            $table->json('opcionais');
+            $table->json('opcionais')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
         });
