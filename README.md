@@ -8,13 +8,11 @@ Thank you for visiting this repository and showing interest in my work!
 
 ## Imagens
 
-<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_31-HD%20Ve%C3%ADculos.png?raw=true" />
+<img height="300em" src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_31-HD%20Ve%C3%ADculos.png?raw=true" style="border-radius: 10px" />
 
-<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_44-Volkswagen.png?raw=true" />
+<img height="300em" src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_44-Volkswagen.png?raw=true" style="border-radius: 10px" />
 
-<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_19-Cadastro%20de%20ve%C3%ADculos.png?raw=true" />
-
-<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_38-Meu%20Cadastro.png?raw=true" />
+<img height="400em" src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_38-Meu%20Cadastro.png?raw=true" style="border-radius: 10px" />
 
   
 ## Contributing
