@@ -1,11 +1,3 @@
-<style>
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 15px;
-    }
-</style>
-
 ## Vehicle Management System: A Laravel CRUD Application with User Dashboard, Image Upload, and Related Features
 
 This is my first project in Laravel, developed as part of the Back-end PHP Developer course offered by Senai. The teacher gave me a great start, but the rest was all about running after knowledge, of course by watching videos and Laravel's own documentation. It was an incredible challenge to learn Laravel and its nuances, but thanks to the videos and official documentation, I was able to carry the project to completion.
