@@ -1,11 +1,10 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+    }
+</style>
 
 ## Vehicle Management System: A Laravel CRUD Application with User Dashboard, Image Upload, and Related Features
 
@@ -15,6 +14,17 @@ This repository contains the complete source code of the project, including the 
 
 Thank you for visiting this repository and showing interest in my work!
 
+## Imagens
+
+<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_31-HD%20Ve%C3%ADculos.png?raw=true" />
+
+<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_44-Volkswagen.png?raw=true" />
+
+<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_19-Cadastro%20de%20ve%C3%ADculos.png?raw=true" />
+
+<img src="https://github.com/hiagodrigo/hdveiculos/blob/main/public/Examples/2023-03-21%2022_54_38-Meu%20Cadastro.png?raw=true" />
+
+  
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
